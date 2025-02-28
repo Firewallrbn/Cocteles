@@ -1,0 +1,82 @@
+/* Reseteo de márgenes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+  }
+  
+  /* Encabezado */
+  header {
+    background: #097b84;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Contenedor principal con flexbox */
+  #container {
+    display: flex;
+    min-height: 100vh; /* Para que la barra lateral ocupe toda la altura */
+  }
+  
+  /* Sección principal */
+  main {
+    flex: 1; /* Ocupa el espacio restante */
+    padding: 1rem;
+    text-align: center; /* Centrado de textos, opcional */
+  }
+  
+  /* Sección donde se muestra el resultado */
+  #resultado {
+    background: #fff;
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 5px;
+    max-width: 500px;
+    text-align: left;
+  }
+  
+  #resultado img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Loader */
+  #loader {
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+  
+  /* Barra lateral de favoritos */
+  #favoritos-container {
+    width: 250px;
+    background: #f0f0f0;
+    padding: 1rem;
+    border-left: 2px solid #ccc;
+  }
+  
+  #favoritos-container h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  /* Lista de favoritos */
+  #lista-favoritos li {
+    list-style: none;
+    margin: 0.5rem 0;
+    background: #d4f1f4;
+    border-radius: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  #lista-favoritos li:hover {
+    background: #bde1e4;
+  }
+  
