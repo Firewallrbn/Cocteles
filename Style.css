@@ -79,4 +79,20 @@
   #lista-favoritos li:hover {
     background: #bde1e4;
   }
-  
+  button{
+    background: #097b84;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    border-color: transparent;
+    font-size: large;
+    transition: 0.3;
+  }
+  button:hover{
+    filter: brightness(0.85);
+  } 
+  .bFavorito{
+  padding: 10px;
+  font-size: medium;
+  }

@@ -88,12 +88,26 @@ function mostrarFavoritos() {
     return;
   }
 
-  // Generamos el HTML de cada favorito
   listaFavoritos.innerHTML = favoritos
-    .map(fav => `<li onclick="verFavorito('${fav.id}')">${fav.nombre}</li>`)
-    .join("");
-}
+  .map(fav => `
+    <li onclick="verFavorito('${fav.id}')" id="${fav.id}">${fav.nombre}</li>
+    <button class="bFavorito" id="C${fav.id}">Borrar</button>
+  `)
+  .join("");
 
+// Esperamos a que los botones existan en el DOM
+favoritos.forEach(fav => {
+  let Borrar = document.getElementById(`C${fav.id}`);
+  let favElement = document.getElementById(`${fav.id}`);
+
+  if (Borrar && favElement) { // Asegurar que existen antes de agregar el evento
+    Borrar.addEventListener("click", function() { 
+      favElement.remove(); // Elimina el elemento favorito
+      this.remove();       // Elimina el botón
+    });
+  }
+});
+};
 /**
  * Busca en la API los detalles de un cóctel favorito por su ID
  * y los muestra en la sección principal.
