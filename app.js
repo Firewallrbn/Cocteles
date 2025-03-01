@@ -82,47 +82,36 @@ function guardarEnFavoritos(idDrink, nombreCoctel) {
 function mostrarFavoritos() {
   let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
   
+  // Si no hay favoritos, mostrar un mensaje
   if (!favoritos.length) {
     listaFavoritos.innerHTML = "<p>No hay favoritos guardados.</p>";
     return;
   }
 
   listaFavoritos.innerHTML = favoritos
-    .map(fav => `
-      <li onclick="verFavorito('${fav.id}')" id="fav-${fav.id}">${fav.nombre}</li>
-      <button class="bFavorito" id="btn-${fav.id}">Borrar</button>
-    `)
-    .join("");
+  .map(fav => `
+    <li onclick="verFavorito('${fav.id}')" id="${fav.id}">${fav.nombre}</li>
+    <button class="bFavorito" id="C${fav.id}">X</button>
+  `)
+  .join("");
 
-  // Agregar eventos a los botones de borrar
-  favoritos.forEach(fav => {
-    let botonBorrar = document.getElementById(`btn-${fav.id}`);
-    let favElement = document.getElementById(`fav-${fav.id}`);
+// Esperamos a que los botones existan en el DOM
+favoritos.forEach(fav => {
+  let Borrar = document.getElementById(`C${fav.id}`);
+  let favElement = document.getElementById(`${fav.id}`);
 
-    if (botonBorrar && favElement) {
-      botonBorrar.addEventListener("click", function() {
-        borrarDeFavoritos(fav.id); // Función para eliminar del localStorage
-      });
-    }
-  });
-}
-
+  if (Borrar && favElement) { // Asegurar que existen antes de agregar el evento
+    Borrar.addEventListener("click", function() { 
+      favElement.remove(); // Elimina el elemento favorito
+      this.remove();       // Elimina el botón
+    });
+  }
+});
+};
 /**
- * Elimina un cóctel de la lista de favoritos en el DOM y en localStorage.
+ * Busca en la API los detalles de un cóctel favorito por su ID
+ * y los muestra en la sección principal.
  */
-function borrarDeFavoritos(idDrink) {
-  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-
-  // Filtrar los favoritos para excluir el que queremos eliminar
-  favoritos = favoritos.filter(fav => fav.id !== idDrink);
-
-  // Guardar la nueva lista en localStorage
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
-
-  // Volver a renderizar la lista
-  mostrarFavoritos();
-}
-
 async function verFavorito(idDrink) {
   try {
     loader.style.display = "block";

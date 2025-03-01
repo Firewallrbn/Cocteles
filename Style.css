@@ -1,98 +1,165 @@
 /* Reseteo de márgenes */
+:root {
+  --gradient-bg: linear-gradient(135deg, #097b84, #5bc0de);
+}
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+}
+
+/* Encabezado */
+header {
+  background: linear-gradient(135deg, #097b84, #5bc0de);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Contenedor principal con flexbox */
+#container {
+  display: flex;
+  min-height: 100vh; /* Para que la barra lateral ocupe toda la altura */
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  text-align: center; /* Centrado de textos, opcional */
+}
+
+/* Sección donde se muestra el resultado */
+#resultado {
+  background: #fff;
+  line-height: 140%;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 5px;
+  max-width: 500px;
+  text-align: left;
+}
+
+#resultado img {
+  margin-top: 2.5rem;
+  max-width: 100%;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+/* Lista de ingredientes */
+#lista-ingredientes {
+  margin-left: 20rem; 
+  line-height: 20px;
   
-  body {
-    font-family: Arial, sans-serif;
-    background: #f9f9f9;
+}
+
+/* Loader (spinner) */
+#loader {
+  display: none;          /* Por defecto se oculta */
+  margin: 1rem auto;
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc; 
+  border-top: 5px solid #097b84; /* Color de la parte que gira */
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Animación para el spinner */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  /* Encabezado */
-  header {
-    background: #097b84;
-    color: white;
-    padding: 1rem;
-    text-align: center;
+  100% {
+    transform: rotate(360deg);
   }
-  
-  /* Contenedor principal con flexbox */
-  #container {
-    display: flex;
-    min-height: 100vh; /* Para que la barra lateral ocupe toda la altura */
-  }
-  
-  /* Sección principal */
-  main {
-    flex: 1; /* Ocupa el espacio restante */
-    padding: 1rem;
-    text-align: center; /* Centrado de textos, opcional */
-  }
-  
-  /* Sección donde se muestra el resultado */
-  #resultado {
-    background: #fff;
-    padding: 1rem;
-    margin: 1rem auto;
-    border-radius: 5px;
-    max-width: 500px;
-    text-align: left;
-  }
-  
-  #resultado img {
-    max-width: 100%;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
-  
-  /* Loader */
-  #loader {
-    font-weight: bold;
-    margin: 1rem 0;
-  }
-  
-  /* Barra lateral de favoritos */
-  #favoritos-container {
-    width: 250px;
-    background: #f0f0f0;
-    padding: 1rem;
-    border-left: 2px solid #ccc;
-  }
-  
-  #favoritos-container h2 {
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  /* Lista de favoritos */
-  #lista-favoritos li {
-    list-style: none;
-    margin: 0.5rem 0;
-    background: #d4f1f4;
-    border-radius: 5px;
-    padding: 0.5rem;
-    cursor: pointer;
-  }
-  
-  #lista-favoritos li:hover {
-    background: #bde1e4;
-  }
-  button{
-    background: #097b84;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    border-color: transparent;
-    font-size: large;
-    transition: 0.3;
-  }
-  button:hover{
-    filter: brightness(0.85);
-  } 
-  .bFavorito{
+}
+
+/* Barra lateral de favoritos */
+#favoritos-container {
+  width: 250px;
+  background: #f0f0f0;
+  padding: 1rem;
+  border-left: 2px solid #ccc;
+}
+
+#favoritos-container h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+aside ul {
+  display: flex;
+  padding-left: 0.5rem;
+  padding:  2px;
+}
+
+/* Lista de favoritos */
+#lista-favoritos li {
+  list-style: none;
+  margin: 0.5rem 0;
+  background:var(--gradient-bg);
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+#lista-favoritos li:hover {
+  background: #bde1e4;
+}
+
+/* Estilos para botones */
+button {
+  background: var(--gradient-bg);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  border-color: transparent;
+  font-size: large;
+  transition: 0.3s ease; /* Transición suave para hover */
+  cursor: pointer;
+  border:none;
+}
+
+button:hover {
+  filter: brightness(0.85);
+} 
+
+/* Clase específica para un botón de favorito más pequeño */
+.bFavorito {
   padding: 10px;
   font-size: medium;
+}
+
+/* Media Query para pantallas pequeñas (ancho <= 768px) */
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;    /* Cambia el layout a vertical */
   }
+  #favoritos-container {
+    width: 100%;              /* Ocupa todo el ancho */
+    border-left: none;        /* Quita el borde izquierdo */
+    border-top: 2px solid #ccc; /* Agrega un borde superior para separar */
+    margin-top: 1rem;         /* Espacio arriba */
+  }
+  #resultado {
+    max-width: 90%;          /* Ajusta el ancho en pantallas pequeñas */
+  }
+  button {
+    width: 80%;               /* Haz que los botones ocupen más espacio en móvil */
+    max-width: 300px;
+    margin: 0.5rem auto;
+  }
+}
