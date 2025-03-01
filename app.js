@@ -66,38 +66,46 @@ function guardarEnFavoritos(idDrink, nombreCoctel) {
 function mostrarFavoritos() {
   let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
   
-  // Si no hay favoritos, mostrar un mensaje
   if (!favoritos.length) {
     listaFavoritos.innerHTML = "<p>No hay favoritos guardados.</p>";
     return;
   }
 
   listaFavoritos.innerHTML = favoritos
-  .map(fav => `
-    <li onclick="verFavorito('${fav.id}')" id="${fav.id}">${fav.nombre}</li>
-    <button class="bFavorito" id="C${fav.id}">X</button>
-  `)
-  .join("");
+    .map(fav => `
+    <div>
+      <li onclick="verFavorito('${fav.id}')" id="fav-${fav.id}">${fav.nombre}</li>
+      <button class="bFavorito" id="btn-${fav.id}">Eliminar</button>
+      </div>
+    `)
+    .join("");
 
+  // Agregar eventos a los botones de borrar
   favoritos.forEach(fav => {
     let botonBorrar = document.getElementById(`btn-${fav.id}`);
     let favElement = document.getElementById(`fav-${fav.id}`);
 
     if (botonBorrar && favElement) {
       botonBorrar.addEventListener("click", function() {
-        borrarDeFavoritos(fav.id); 
+        borrarDeFavoritos(fav.id); // Función para eliminar del localStorage
       });
     }
   });
 }
 
+/**
+ * Elimina un cóctel de la lista de favoritos en el DOM y en localStorage.
+ */
 function borrarDeFavoritos(idDrink) {
   let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
+  // Filtrar los favoritos para excluir el que queremos eliminar
   favoritos = favoritos.filter(fav => fav.id !== idDrink);
 
+  // Guardar la nueva lista en localStorage
   localStorage.setItem("favoritos", JSON.stringify(favoritos));
 
+  // Volver a renderizar la lista
   mostrarFavoritos();
 }
 

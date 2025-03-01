@@ -102,6 +102,7 @@ aside ul {
   display: flex;
   padding-left: 0.5rem;
   padding:  2px;
+  flex-direction: column;
 }
 
 /* Lista de favoritos */
@@ -137,12 +138,14 @@ button:hover {
   filter: brightness(0.85);
 } 
 
-/* Clase específica para un botón de favorito más pequeño */
 .bFavorito {
-  padding: 10px;
+  
 }
 
-/* Media Query para pantallas pequeñas (ancho <= 768px) */
+ul button{
+  padding: 5px;
+  font-size: small;
+}
 @media (max-width: 768px) {
   #container {
     flex-direction: column;    /* Cambia el layout a vertical */
