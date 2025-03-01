@@ -66,17 +66,18 @@ function guardarEnFavoritos(idDrink, nombreCoctel) {
 function mostrarFavoritos() {
   let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
   
+  // Si no hay favoritos, mostrar un mensaje
   if (!favoritos.length) {
     listaFavoritos.innerHTML = "<p>No hay favoritos guardados.</p>";
     return;
   }
 
   listaFavoritos.innerHTML = favoritos
-    .map(fav => `
-      <li onclick="verFavorito('${fav.id}')" id="fav-${fav.id}">${fav.nombre}</li>
-      <button class="bFavorito" id="btn-${fav.id}">Borrar</button>
-    `)
-    .join("");
+  .map(fav => `
+    <li onclick="verFavorito('${fav.id}')" id="${fav.id}">${fav.nombre}</li>
+    <button class="bFavorito" id="C${fav.id}">X</button>
+  `)
+  .join("");
 
   favoritos.forEach(fav => {
     let botonBorrar = document.getElementById(`btn-${fav.id}`);
