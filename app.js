@@ -74,8 +74,7 @@ function mostrarFavoritos() {
   listaFavoritos.innerHTML = favoritos
     .map(fav => `
     <div>
-      <li onclick="verFavorito('${fav.id}')" id="fav-${fav.id}">${fav.nombre}</li>
-      <button class="bFavorito" id="btn-${fav.id}">Eliminar</button>
+      <li onclick="verFavorito('${fav.id}')" id="fav-${fav.id}">${fav.nombre}<button class="bFavorito" id="btn-${fav.id}">Eliminar</button></li>
       </div>
     `)
     .join("");

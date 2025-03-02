@@ -99,7 +99,8 @@ main {
 }
 
 aside ul {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   padding-left: 0.5rem;
   padding:  2px;
   flex-direction: column;
@@ -112,8 +113,27 @@ aside ul {
   background:var(--gradient-bg);
   color: white;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.5rem 0.8rem;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.3s, transform 0.2s;
+} 
+
+.bFavorito {
+  background: #f75b4a;  
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+.bFavorito:hover {
+  filter: brightness(0.9);
 }
 
 #lista-favoritos li:hover {
@@ -138,10 +158,6 @@ button:hover {
   filter: brightness(0.85);
 } 
 
-.bFavorito {
-  
-}
-
 ul button{
   padding: 5px;
   font-size: small;
@@ -164,4 +180,18 @@ ul button{
     max-width: 300px;
     margin: 0.5rem auto;
   }
+}
+.coctel-instrucciones {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 1rem;
+  line-height:1.8em ;
+}
+
+.coctel-ingredientes {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  padding-left: 200px;
 }
